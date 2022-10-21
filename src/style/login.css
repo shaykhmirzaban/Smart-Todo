@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -33,4 +34,15 @@ button {
   height: 40px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+p {
+  font-size: 1.1rem;
+  color: red;
+}
+
+.transform {
+  color: #0000ffc2;
+  cursor: pointer;
+  text-decoration: underline;
 }

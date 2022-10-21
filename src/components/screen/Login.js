@@ -5,7 +5,7 @@ import { useState } from "react";
 function Login() {
   let [item, setItem] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   // set value in object

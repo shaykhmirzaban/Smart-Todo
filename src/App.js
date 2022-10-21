@@ -1,21 +1,28 @@
-import "./styles.css";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// component
-import Login from "./components/screen/Login";
-import Signup from "./components/screen/Signup";
-import Boilerplate from "./components/screen/Boilerplate";
-import Data from "./components/screen/Data";
+// CSS
+import "./styles.css";
 
-export default function App() {
+// COMPONENTS
+import Boilerplate from "./components/screen/Boilerplate";
+import Signup from "./components/screen/Signup";
+import Login from "./components/screen/Login";
+import Home from "./components/screen/Home";
+
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Boilerplate />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="data" element={<Data />} />
-      </Routes>
-    </Router>
+    <React.StrictMode>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Boilerplate />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+          <Route path="home" element={<Home />} />
+        </Routes>
+      </Router>
+    </React.StrictMode>
   );
 }
+
+export default App;
