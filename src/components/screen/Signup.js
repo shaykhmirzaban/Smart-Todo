@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { signup } from "../config/FirebaseMethod";
+// CSS
 import "../../style/login.css";
-import { loginUser } from "../FirebaseMethod";
+import { useNavigate } from "react-router-dom";
 
-function Signup() {
+export default function Signup() {
   let [item, setItem] = useState({
     email: "",
-    password: ""
+    password: "",
   });
+  let [error, setError] = useState("");
   let navigate = useNavigate();
 
-  const checkValue = (e) => {
+  const currentData = (e) => {
     let { value, name } = e.target;
+
     setItem((val) => {
       return { ...val, [name]: value };
     });
@@ -19,34 +22,36 @@ function Signup() {
 
   const signUpUser = (e) => {
     e.preventDefault();
-    loginUser(item)
-      .then((res) => navigate("/data", { state: res }))
-      .catch((code, message) => console.log(code, message));
+    signup(item)
+      .then((res) => navigate("/", { state: res }))
+      .catch((error) => setError(error));
   };
 
   return (
     <section className="signup">
-      <h1>Signup</h1>
+      <h1>Sign up</h1>
 
       <form onSubmit={signUpUser}>
-        <input type="text" placeholder="Enter first name" />
-        <input type="text" placeholder="Enter last name" />
         <input
           type="email"
           placeholder="Enter your email"
           name="email"
-          onChange={checkValue}
+          onChange={currentData}
         />
         <input
           type="password"
           placeholder="Enter your password"
           name="password"
-          onChange={checkValue}
+          onChange={currentData}
         />
-        <button>Sign up</button>
+
+        <button>Sign Up</button>
+
+        <p onClick={() => navigate("/login")} class="transform">
+          Login
+        </p>
       </form>
+      {error ? <p>{error}</p> : null}
     </section>
   );
 }
-
-export default Signup;
